@@ -26,7 +26,7 @@ public final class Output {
         } else if (newLine){
             OUT.println(obj);
         } else {
-            OUT.print(obj);
+            OUT.format("%s", obj);
         }
     }
 }

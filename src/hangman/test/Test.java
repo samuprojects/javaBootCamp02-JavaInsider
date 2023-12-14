@@ -1,4 +1,6 @@
-package hangman.core;
+package hangman.test;
+
+import hangman.core.Dictionary;
 
 @SuppressWarnings("ALL")
 public class Test {
