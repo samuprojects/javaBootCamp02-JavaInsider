@@ -19,9 +19,12 @@ public class Dictionary {
     }
 
     // escolher palavra aleatoriamente
-    public String nextWord() {
-        int randomIndex = random.nextInt(0, words.size());
-        return words.get(randomIndex);
+    public Word nextWord() { // integrando com Word
+        return new Word(
+                words.get(
+                        random.nextInt(0, words.size())
+                )
+        );
     }
 
     // professor explicou que o segredo para refatorar e sempre melhorar seu código é ter experiência codificando, coisa que somente vem com o tempo
