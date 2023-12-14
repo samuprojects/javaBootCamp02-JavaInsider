@@ -15,7 +15,8 @@ public class Test {
 //        System.out.println(w.reveal('x'));
 //        System.out.println(w);
 
-        Dictionary dictionary = new Dictionary();
+//        Dictionary dictionary = new Dictionary();
+        Dictionary dictionary = Dictionary.instance();
         System.out.println(dictionary.nextWord());
         System.out.println(dictionary.nextWord());
         System.out.println(dictionary.nextWord());
