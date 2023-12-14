@@ -36,7 +36,7 @@ public final class Input {
 
     public static String readFromKeyboard(String message){
         if (!isNull(message)) {
-            System.out.format("%s: ", message);
+            Output.writeToConsole(message + ": ", false); // não vai pular linha devido parametro newLine como false
         }
         return SCANNER.nextLine();
     }
