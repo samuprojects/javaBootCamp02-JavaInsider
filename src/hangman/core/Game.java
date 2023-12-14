@@ -13,21 +13,24 @@ public class Game {
         Output.writeToConsole(word);
 
         while (true) {
-            String text = Input.readFromKeyboard("Letter");
-
-            try{
-                char letter = validChar(text);
-                word.reveal(letter);
-            } catch (InvalidLetterException e) {
-
-                Output.writeToConsole("ERROR: " + e.getMessage());
-            }
-
+            char letter = readLetter();
+            word.reveal(letter);
             Output.writeToConsole(word);
         }
     }
 
-    private char validChar(String text) throws InvalidLetterException {
+    private char readLetter(){
+        while (true) {
+            try{
+                return validLetter(Input.readFromKeyboard("Letter"));
+            } catch (InvalidLetterException e) {
+
+                Output.writeToConsole("ERROR: " + e.getMessage());
+            }
+        }
+    }
+
+    private char validLetter(String text) throws InvalidLetterException {
         String trimmedText = text.trim();
 
         if (trimmedText.length() == 0) {
