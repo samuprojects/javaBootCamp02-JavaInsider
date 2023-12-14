@@ -16,5 +16,8 @@ public class Test {
 //        System.out.println(w);
 
         Dictionary dictionary = new Dictionary();
+        System.out.println(dictionary.nextWord());
+        System.out.println(dictionary.nextWord());
+        System.out.println(dictionary.nextWord());
     }
 }
