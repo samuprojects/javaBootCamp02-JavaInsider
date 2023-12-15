@@ -15,7 +15,7 @@ public class Game {
 
         Dictionary dictionary = Dictionary.instance();
         Word word = dictionary.nextWord();
-        writeToConsole(word);
+        printWord(word);
 
         while (!word.revealed() && chancesLeft > 0) {
             char letter = readLetter();
@@ -26,10 +26,17 @@ public class Game {
                 onMiss();
             }
 
-            writeToConsole(word);
+            printWord(word);
         }
 
         onEnd(word);
+    }
+
+
+    private void printWord(Word word){
+        writeToConsole();
+        writeToConsole(word);
+        writeToConsole();
     }
 
     private char readLetter(){

@@ -15,7 +15,12 @@ public class Word {
 
     @Override
     public String toString() {
-        return String.valueOf(hiddenLetters);
+        StringBuilder sb = new StringBuilder();
+        for (char l : hiddenLetters){
+            sb.append(l).append(" ");
+        }
+
+        return sb.toString().trim();
     }
 
     // método para exibir letra existente
