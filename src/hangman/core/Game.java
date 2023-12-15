@@ -19,6 +19,8 @@ public class Game {
 
         Dictionary dictionary = Dictionary.instance();
         Word word = dictionary.nextWord();
+        writeToConsole("Welcome to the hangman game!!!");
+        writeToConsole("Words with accentuation are considered attempts!");
         printWord(word);
 
         while (!word.revealed() && chancesLeft > 0) {
