@@ -35,7 +35,7 @@ public class Word {
         return toString().indexOf(HIDDEN_CHAR) == -1;
     }
 
-    public String show() { // mostrar a palavra
+    public String show() { // mostrar a palavra real
         return String.valueOf(letters);
     }
 }

@@ -7,13 +7,17 @@ import static hangman.io.Output.writeToConsole;
 @SuppressWarnings("ALL")
 public class Game {
 
+    private static final int MAX_CHANCES = 7;
+
+    private int chancesLeft = MAX_CHANCES;
+
     public void start() {
 
         Dictionary dictionary = Dictionary.instance();
         Word word = dictionary.nextWord();
         writeToConsole(word);
 
-        while (!word.revealed()) {
+        while (!word.revealed() && chancesLeft > 0) {
             char letter = readLetter();
 
             if (word.reveal(letter)) {
@@ -25,7 +29,7 @@ public class Game {
             writeToConsole(word);
         }
 
-        onEnd();
+        onEnd(word);
     }
 
     private char readLetter(){
@@ -62,10 +66,17 @@ public class Game {
     }
 
     private void onMiss() {
-        writeToConsole("You missed...");
+        chancesLeft--;
+        writeToConsole("You missed... " + chancesLeft + " chance(s) left");
     }
 
-    private void onEnd(){
-        writeToConsole("You did it!  :D");
+    private void onEnd(Word word){
+        if (word.revealed()){
+            writeToConsole("You did it!  :D");
+        } else {
+            writeToConsole("The word was: " + word.show());
+            writeToConsole("Better luck next time...  :)");
+        }
+
     }
 }
