@@ -1,7 +1,8 @@
 package hangman.core;
 
 import hangman.io.Input;
-import hangman.io.Output;
+
+import static hangman.io.Output.writeToConsole;
 
 @SuppressWarnings("ALL")
 public class Game {
@@ -10,12 +11,18 @@ public class Game {
 
         Dictionary dictionary = Dictionary.instance();
         Word word = dictionary.nextWord();
-        Output.writeToConsole(word);
+        writeToConsole(word);
 
         while (true) {
             char letter = readLetter();
-            word.reveal(letter);
-            Output.writeToConsole(word);
+
+            if (word.reveal(letter)) {
+                onHit();
+            } else {
+                onMiss();
+            }
+
+            writeToConsole(word);
         }
     }
 
@@ -25,7 +32,7 @@ public class Game {
                 return validLetter(Input.readFromKeyboard("Letter"));
             } catch (InvalidLetterException e) {
 
-                Output.writeToConsole("ERROR: " + e.getMessage());
+                writeToConsole("ERROR: " + e.getMessage());
             }
         }
     }
@@ -46,5 +53,13 @@ public class Game {
         }
 
         return letter;
+    }
+
+    private void onHit() {
+        writeToConsole("You found it!");
+    }
+
+    private void onMiss() {
+        writeToConsole("You missed...");
     }
 }
