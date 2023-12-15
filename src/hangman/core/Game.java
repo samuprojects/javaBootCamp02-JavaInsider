@@ -2,6 +2,9 @@ package hangman.core;
 
 import hangman.io.Input;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static hangman.io.Output.writeToConsole;
 
 @SuppressWarnings("ALL")
@@ -10,6 +13,7 @@ public class Game {
     private static final int MAX_CHANCES = 7;
 
     private int chancesLeft = MAX_CHANCES;
+    private final Set<Character> letterUsed = new HashSet<>();
 
     public void start() {
 
@@ -26,6 +30,7 @@ public class Game {
                 onMiss();
             }
 
+            letterUsed.add(letter);
             printWord(word);
         }
 
@@ -59,13 +64,19 @@ public class Game {
             throw new InvalidLetterException("Provide only one letter");
         }
 
-        char letter = text.charAt(0);
+        char letter = trimmedText.charAt(0);
 
         if (!Character.isLetter(letter)){
             throw new InvalidLetterException("Only letters are allowed");
         }
 
-        return letter;
+        char upperLetter = Character.toUpperCase(letter);
+
+        if (letterUsed.contains(upperLetter)){
+            throw new InvalidLetterException("You already tried this one");
+        }
+
+        return upperLetter;
     }
 
     private void onHit() {
