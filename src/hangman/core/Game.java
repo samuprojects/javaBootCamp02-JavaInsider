@@ -13,7 +13,7 @@ public class Game {
         Word word = dictionary.nextWord();
         writeToConsole(word);
 
-        while (true) {
+        while (!word.revealed()) {
             char letter = readLetter();
 
             if (word.reveal(letter)) {
@@ -24,6 +24,8 @@ public class Game {
 
             writeToConsole(word);
         }
+
+        onEnd();
     }
 
     private char readLetter(){
@@ -61,5 +63,9 @@ public class Game {
 
     private void onMiss() {
         writeToConsole("You missed...");
+    }
+
+    private void onEnd(){
+        writeToConsole("You did it!  :D");
     }
 }

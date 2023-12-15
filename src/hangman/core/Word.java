@@ -30,4 +30,12 @@ public class Word {
         }
         return replaced;
     }
+
+    public boolean revealed() { // verificar se a palavra foi revelada
+        return toString().indexOf(HIDDEN_CHAR) == -1;
+    }
+
+    public String show() { // mostrar a palavra
+        return String.valueOf(letters);
+    }
 }
